@@ -16,13 +16,10 @@ class ExerciseTypeSeeder extends Seeder
          * Add Exercise Types */
 
         DB::table('exercise_types')->insert([
-            'name' => 'Strength'
+            ['name' => 'Strength'],
+            ['name' => 'Flexibility'],
+            ['name' => 'Cardio']
         ]);
-        DB::table('exercise_types')->insert([
-            'name' => 'Flexibility'
-        ]);
-        DB::table('exercise_types')->insert([
-            'name' => 'Cardio'
-        ]);
+
     }
 }

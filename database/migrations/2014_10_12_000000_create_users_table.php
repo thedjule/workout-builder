@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('weight')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('api_token')->unique();
             $table->rememberToken();
             $table->timestamps();
         });

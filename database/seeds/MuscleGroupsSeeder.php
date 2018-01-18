@@ -16,43 +16,20 @@ class MuscleGroupsSeeder extends Seeder
          * Add All Muscle Groups */
 
         DB::table('muscle_groups')->insert([
-            'name' => 'Abdominals'
+            ['name' => 'Full Body'],
+            ['name' => 'Abdominals'],
+            ['name' => 'Arms'],
+            ['name' => 'Back'],
+            ['name' => 'Chest'],
+            ['name' => 'Hamstrings'],
+            ['name' => 'Hips'],
+            ['name' => 'Legs'],
+            ['name' => 'Low Back'],
+            ['name' => 'Lower Legs'],
+            ['name' => 'Neck'],
+            ['name' => 'Quadriceps'],
+            ['name' => 'Shoulders']
         ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Arms'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Back'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Chest'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Full Body'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Hamstrings'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Hips'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Legs'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Low Back'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Lower Legs'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Neck'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Quadriceps'
-        ]);
-        DB::table('muscle_groups')->insert([
-            'name' => 'Shoulders'
-        ]);
+
     }
 }
