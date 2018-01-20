@@ -15,6 +15,15 @@ class Exercise extends Model
         'name', 'video'
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at', 'updated_at', 'pivot'
+    ];
+
     public function workouts()
     {
         return $this->belongsToMany('App\Workout');
