@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Workout;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Workout as WorkoutResource;
 use App\Http\Resources\WorkoutCollection;
+use Auth;
 
 class WorkoutController extends Controller
 {
@@ -16,8 +18,8 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        $workouts = Workout::paginate(5);
-        return new WorkoutCollection($workouts);
+        $user = User::find(Auth::user()->id);
+        return new WorkoutCollection($user->workouts()->paginate(5));
     }
 
     /**

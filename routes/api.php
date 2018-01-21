@@ -13,10 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+Route::post('login', 'Auth\LoginController@login');
 
 Route::group(['prefix' => '/users', 'middleware' => 'auth:api'], function () {
 
@@ -25,12 +22,11 @@ Route::group(['prefix' => '/users', 'middleware' => 'auth:api'], function () {
     Route::put('/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
     Route::post('/register', ['as' => 'users.register', 'uses' => 'Auth\RegisterController@register']);
     Route::delete('/{id}', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
-    Route::post('/login', ['as' => 'users.login', 'uses' => 'Auth\LoginController@login']);
     Route::post('/logout', ['as' => 'users.logout', 'uses' => 'Auth\LoginController@logout']);
 
 });
 
-Route::group(['prefix' => '/workouts'], function () {
+Route::group(['prefix' => '/workouts', 'middleware' => 'auth:api'], function () {
 
     Route::get('/', ['as' => 'workouts', 'uses' => 'WorkoutController@index']);
     Route::get('/{id}', ['as' => 'workouts.show', 'uses' => 'WorkoutController@show']);
@@ -40,7 +36,7 @@ Route::group(['prefix' => '/workouts'], function () {
 
 });
 
-Route::group(['prefix' => '/exercises'], function () {
+Route::group(['prefix' => '/exercises', 'middleware' => 'auth:api'], function () {
 
     Route::get('/', ['as' => 'exercises', 'uses' => 'ExerciseController@index']);
     Route::get('/{id}', ['as' => 'exercises.show', 'uses' => 'ExerciseController@show']);
