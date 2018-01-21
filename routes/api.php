@@ -22,10 +22,11 @@ Route::group(['prefix' => '/users'], function () {
 
     Route::get('/', ['as' => 'users', 'uses' => 'UserController@index']);
     Route::get('/{id}', ['as' => 'users.show', 'uses' => 'UserController@show']);
-    Route::post('/store', ['as' => 'users.store', 'uses' => 'UserController@store']);
-    Route::put('/store', ['as' => 'users.store', 'uses' => 'UserController@store']);
+    Route::put('/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
+    Route::post('/register', ['as' => 'users.register', 'uses' => 'Auth\RegisterController@register']);
     Route::delete('/{id}', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
-
+    Route::post('/login', ['as' => 'users.login', 'uses' => 'Auth\LoginController@login']);
+    Route::post('/logout', ['as' => 'users.logout', 'uses' => 'Auth\LoginController@logout']);
 
 });
 

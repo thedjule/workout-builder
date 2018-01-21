@@ -24,11 +24,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'api_token', 'pivot'
+        'password', 'remember_token', 'pivot'
     ];
 
     public function workouts()
     {
         return $this->belongsToMany('App\Workout');
+    }
+
+    public function generateApiToken()
+    {
+        $this->api_token = bin2hex(openssl_random_pseudo_bytes(30));
+        $this->save();
+
+        return $this->api_token;
     }
 }

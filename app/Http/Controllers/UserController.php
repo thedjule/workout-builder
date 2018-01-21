@@ -39,37 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('put')) {
-            $user = User::findOrFail($request->id);
-        } else {
-            $user = new User();
-        }
-
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->age = $request->input('age');
-        $user->gender = $request->input('gender');
-        $user->height = $request->input('height');
-        $user->weight = $request->input('weight');
-
-        // Change password when update ?
-
-        if (!empty($request->password)) {
-            $password = trim($request->password);
-        } else {
-            // Set the manual password
-            $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
-            $string = '';
-            $max = mb_strlen($keyspace, '8bit') - 1;
-            for ($i = 0; $i < 10; ++$i) {
-                $string .= $keyspace[random_int(0, $max)];
-            }
-            $password = $string;
-        }
-
-        $user->password = Hash::make($password);
-
-        if ($user->save()) return new UserResource($user);
+        //
     }
 
     /**
@@ -104,7 +74,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($request->id);
+
+        $user->name = $request->input('name');
+        $user->age = $request->input('age');
+        $user->gender = $request->input('gender');
+        $user->height = $request->input('height');
+        $user->weight = $request->input('weight');
+
+        if ($user->save()) return new UserResource($user);
     }
 
     /**
