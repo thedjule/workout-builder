@@ -15,6 +15,15 @@ class MuscleGroup extends Model
         'name'
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at', 'updated_at', 'pivot'
+    ];
+
     public function exercises()
     {
         return $this->belongsToMany('App\Exercise');

@@ -18,7 +18,7 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        $user = User::find(Auth::user()->id);
+        $user = User::findOrFail(Auth::user()->id);
         return new WorkoutCollection($user->workouts()->paginate(5));
     }
 
@@ -40,6 +40,12 @@ class WorkoutController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+
         $workout = $request->isMethod('put') ? Workout::findOrFail($request->id) : new Workout();
 
         $workout->id = $request->input('id');
@@ -47,6 +53,9 @@ class WorkoutController extends Controller
         $workout->notes = $request->input('notes');
 
         if ($workout->save()) {
+            $user->workouts()->syncWithoutDetaching($workout);
+            $workout->exercises()->sync($request->input('exercises'));
+
             return new WorkoutResource($workout);
         }
     }
@@ -59,9 +68,8 @@ class WorkoutController extends Controller
      */
     public function show($id)
     {
-        $workout = Workout::findOrFail($id);
-
-        return new WorkoutResource($workout);
+        $user = User::findOrFail(Auth::user()->id);
+        return new WorkoutResource($user->workouts()->findOrFail($id));
     }
 
     /**

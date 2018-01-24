@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\UserCollection;
-use Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -45,12 +45,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(Auth::user()->id);
         return new UserResource($user);
     }
 
@@ -73,6 +72,10 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
         $user = User::findOrFail($request->id);
 
         $user->name = $request->input('name');

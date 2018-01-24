@@ -15,6 +15,7 @@ class Workout extends Resource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'notes' => $this->notes,
             'exercises' => $this->exercises

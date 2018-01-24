@@ -14,15 +14,15 @@ use Illuminate\Http\Request;
 */
 
 Route::post('login', 'Auth\LoginController@login');
+Route::post('register', 'Auth\RegisterController@register');
 
-Route::group(['prefix' => '/users', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => '/user', 'middleware' => 'auth:api'], function () {
 
-    Route::get('/', ['as' => 'users', 'uses' => 'UserController@index']);
-    Route::get('/{id}', ['as' => 'users.show', 'uses' => 'UserController@show']);
-    Route::put('/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
-    Route::post('/register', ['as' => 'users.register', 'uses' => 'Auth\RegisterController@register']);
-    Route::delete('/{id}', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
-    Route::post('/logout', ['as' => 'users.logout', 'uses' => 'Auth\LoginController@logout']);
+//    Route::get('/', ['as' => 'users', 'uses' => 'UserController@index']);
+    Route::get('/', ['as' => 'user.show', 'uses' => 'UserController@show']);
+    Route::put('/update', ['as' => 'user.update', 'uses' => 'UserController@update']);
+//    Route::delete('/{id}', ['as' => 'user.delete', 'uses' => 'UserController@destroy']);
+    Route::post('/logout', ['as' => 'user.logout', 'uses' => 'Auth\LoginController@logout']);
 
 });
 
@@ -40,8 +40,8 @@ Route::group(['prefix' => '/exercises', 'middleware' => 'auth:api'], function ()
 
     Route::get('/', ['as' => 'exercises', 'uses' => 'ExerciseController@index']);
     Route::get('/{id}', ['as' => 'exercises.show', 'uses' => 'ExerciseController@show']);
-    Route::post('/store', ['as' => 'exercises.store', 'uses' => 'ExerciseController@store']);
-    Route::put('/store', ['as' => 'exercises.store', 'uses' => 'ExerciseController@store']);
-    Route::delete('/{id}', ['as' => 'exercises.delete', 'uses' => 'ExerciseController@destroy']);
+//    Route::post('/store', ['as' => 'exercises.store', 'uses' => 'ExerciseController@store']);
+//    Route::put('/store', ['as' => 'exercises.store', 'uses' => 'ExerciseController@store']);
+//    Route::delete('/{id}', ['as' => 'exercises.delete', 'uses' => 'ExerciseController@destroy']);
 
 });

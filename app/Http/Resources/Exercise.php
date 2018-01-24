@@ -18,7 +18,8 @@ class Exercise extends Resource
             'name' => $this->name,
             'description' => $this->description,
             'video' => $this->video,
-            'exerciseType' => $this->exerciseType
+            'exerciseType' => $this->exerciseType,
+            'muscleGroup' => $this->muscleGroups
         ];
     }
 
