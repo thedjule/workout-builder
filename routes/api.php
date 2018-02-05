@@ -38,10 +38,11 @@ Route::group(['prefix' => '/workouts', 'middleware' => 'auth:api'], function () 
 
 Route::group(['prefix' => '/exercises', 'middleware' => 'auth:api'], function () {
 
-    Route::get('/', ['as' => 'exercises', 'uses' => 'ExerciseController@index']);
-    Route::get('/{id}', ['as' => 'exercises.show', 'uses' => 'ExerciseController@show']);
 //    Route::post('/store', ['as' => 'exercises.store', 'uses' => 'ExerciseController@store']);
 //    Route::put('/store', ['as' => 'exercises.store', 'uses' => 'ExerciseController@store']);
 //    Route::delete('/{id}', ['as' => 'exercises.delete', 'uses' => 'ExerciseController@destroy']);
 
 });
+
+Route::get('/exercises/', ['as' => 'exercises', 'uses' => 'ExerciseController@index']);
+Route::get('/exercises/{id}', ['as' => 'exercises.show', 'uses' => 'ExerciseController@show']);

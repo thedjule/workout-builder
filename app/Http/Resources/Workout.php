@@ -18,7 +18,7 @@ class Workout extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'notes' => $this->notes,
-            'exercises' => $this->exercises
+            'exercises' => Exercise::collection($this->exercises),
         ];
     }
 

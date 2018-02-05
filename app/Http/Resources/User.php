@@ -15,13 +15,14 @@ class User extends Resource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'age' => $this->age,
             'gender' => $this->gender,
             'height' => $this->height,
             'weight' => $this->weight,
-            'workouts' => $this->workouts
+            'workouts' => Workout::collection($this->workouts),
         ];
     }
 
